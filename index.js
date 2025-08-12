@@ -5,8 +5,12 @@ import mongoose from 'mongoose';
 import productRouter from './routes/productRouter.js';
 import userRouter from './routes/userRoute.js';
 import jwt from 'jsonwebtoken';
+import cors from 'cors';
+import orderRouter from './routes/orderRoute.js';
 
 const app =express();
+
+app.use(cors())
 
 app.use(bodyParser.json())
 
@@ -44,8 +48,9 @@ mongoose.connect("mongodb+srv://admin:123@cluster0.2igp6iv.mongodb.net/?retryWri
 }).catch(()=>{console.log("data base connection faild")})
 
 
-app.use("/products",productRouter)
-app.use("/users",userRouter)
+app.use("/api/products",productRouter)
+app.use("/api/users",userRouter)
+app.use("/api/orders",orderRouter)
 
 
 
