@@ -7,6 +7,8 @@ import userRouter from './routes/userRoute.js';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import orderRouter from './routes/orderRoute.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app =express();
 
@@ -42,7 +44,7 @@ app.use((
      }
 })
 
-mongoose.connect("mongodb+srv://admin:123@cluster0.2igp6iv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGODB_URL )
 .then(()=>{
   console.log("connected to the database")
 }).catch(()=>{console.log("data base connection faild")})
